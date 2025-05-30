@@ -18,6 +18,7 @@ from nodes import LoraLoader
 from .utils import extractLoras, getNewTomlnameExt, load_lora_for_models
 import node_helpers
 from comfy.comfy_types import IO
+import datetime
 
 
 routes = PromptServer.instance.routes
@@ -283,7 +284,11 @@ class SaveImageParamLiteMittimi:
         bseed = 0
         if parameters_data:
             bseed = parameters_data[0]['seed'] if "seed" in parameters_data[0] else 0
-        bseed = "_"+str(bseed) if bseed>0 else ""
+        if bseed > 0:
+            bseed = "_"+str(bseed)
+        else:
+            dt_now = datetime.datetime.now()
+            bseed = dt_now.strftime('_%Y%m%d%H%M%S')
 
         for (batch_number, image) in enumerate(images):
             i = 255. * image.cpu().numpy()
