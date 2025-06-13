@@ -67,7 +67,7 @@ class LoadSetParamLiteMittimi:
                 "cfg": ("FLOAT", ),
                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
                 "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
-                "seed": ("INT", {"default": 1}),
+                "seed": ("INT", {"default": 1, "min": 0, "max": 0xffffffffffffffff}),
                 "preset": (preset_list,),
             },
             "hidden": {"node_id": "UNIQUE_ID" }
@@ -172,7 +172,7 @@ class TextToConditioningLiteMittimi:
                 "clip": (IO.CLIP, ),
                 "positive_prompt_text": ("STRING", ),
                 "negative_prompt_text": ("STRING", ),
-                "seed": ("INT", {"default": 1}),
+                "seed": ("INT", {"default": 1, "min": 0, "max": 0xffffffffffffffff}),
             }
         }
     RETURN_TYPES = ("MODEL", "CLIP", "CONDITIONING", "CONDITIONING", )
