@@ -1,0 +1,16 @@
+CheckpointName = "SDXL.safetensors"
+ClipSet = -1
+VAE = "Use_merged_vae"
+PositivePromptA = "best quality, masterpiece, detailed background, "
+PositivePromptB = ""
+PositivePromptC = "photo realistic"
+NegativePromptA = "worst quality, low quality, "
+NegativePromptB = ""
+NegativePromptC = ""
+Width = 832
+Height = 1152
+BatchSize = 1
+Steps = 32
+CFG = 6.5
+SamplerName = "euler_ancestral"
+Scheduler = "normal"
