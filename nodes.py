@@ -321,6 +321,9 @@ class SaveImageParamLiteMittimi:
                     param_counter += 1
                 parameters_text += ", Version: ComfyUI"
                 
+            if parameters_text != "":
+                parameters_text += "\n\n\n"
+            
             filename_with_batch_num = filename.replace("%batch_num%", str(batch_number))
             rseed = bseed if batch_number == 0 else f"{bseed}_{batch_number:03}"
             
@@ -529,3 +532,4 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "SaveParamToPresetLiteMittimi": "SaveParamToPresetLite",
     "LoadImageParamLiteMittimi": "LoadImageParamLite"
 }
+
