@@ -5,8 +5,9 @@ I'm testing now...
 
 === note ===
 
-If RES4LYF is installed, it will not function properly.
+!!! The following error appears to have been fixed. !!!
 
+If RES4LYF is installed, it will not function properly.
 Adding the last three lines of the following code to RES4LYF's init.py will restore normal operation.
 
 ```
@@ -22,5 +23,4 @@ new_scheduler_name = "beta57"
 ```
 
 The source is as follows.
-
 https://github.com/ClownsharkBatwing/RES4LYF/issues/161
