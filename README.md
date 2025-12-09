@@ -5,8 +5,6 @@ I'm testing now...
 
 === note ===
 
-!!! The following error appears to have been fixed. !!!
-
 If RES4LYF is installed, it will not function properly.
 Adding the last three lines of the following code to RES4LYF's init.py will restore normal operation.
 
