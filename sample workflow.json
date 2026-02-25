@@ -1,0 +1,875 @@
+{
+  "id": "aeef7db3-4ff1-4cec-bb64-c4ce7f1f60ee",
+  "revision": 0,
+  "last_node_id": 11,
+  "last_link_id": 31,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "LoadCheckpointLiteMittimi",
+      "pos": [
+        -200,
+        -370
+      ],
+      "size": [
+        210,
+        150
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "checkpoint_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "checkpoint_name"
+          },
+          "link": 1
+        },
+        {
+          "name": "clip_num",
+          "type": "INT",
+          "widget": {
+            "name": "clip_num"
+          },
+          "link": 2
+        },
+        {
+          "name": "vae_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "vae_name"
+          },
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "links": [
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_mittimi_load_presetlite",
+        "ver": "1.0.3",
+        "Node name for S&R": "LoadCheckpointLiteMittimi"
+      },
+      "widgets_values": [
+        "LTX2\\ltx-2-19b-dev-fp8.safetensors",
+        -1,
+        "Use_merged_vae"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "LoraLoaderExtractedPromptLiteMittimi",
+      "pos": [
+        110,
+        -290
+      ],
+      "size": [
+        290,
+        150
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 9
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 10
+        },
+        {
+          "name": "positive_prompt_text",
+          "type": "STRING",
+          "widget": {
+            "name": "positive_prompt_text"
+          },
+          "link": 14
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": [
+            12
+          ]
+        },
+        {
+          "name": "string",
+          "type": "STRING",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_mittimi_load_presetlite",
+        "ver": "1.0.3",
+        "Node name for S&R": "LoraLoaderExtractedPromptLiteMittimi"
+      },
+      "widgets_values": [
+        "",
+        1,
+        "fixed"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "TextToConditioningLiteMittimi",
+      "pos": [
+        500,
+        -170
+      ],
+      "size": [
+        300,
+        190
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 11
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 12
+        },
+        {
+          "name": "positive_prompt_text",
+          "type": "STRING",
+          "widget": {
+            "name": "positive_prompt_text"
+          },
+          "link": 13
+        },
+        {
+          "name": "negative_prompt_text",
+          "type": "STRING",
+          "widget": {
+            "name": "negative_prompt_text"
+          },
+          "link": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            16
+          ]
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "links": null
+        },
+        {
+          "name": "conditioning_positive",
+          "type": "CONDITIONING",
+          "links": [
+            17
+          ]
+        },
+        {
+          "name": "conditioning_negative",
+          "type": "CONDITIONING",
+          "links": [
+            18
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_mittimi_load_presetlite",
+        "ver": "1.0.3",
+        "Node name for S&R": "TextToConditioningLiteMittimi"
+      },
+      "widgets_values": [
+        "",
+        "",
+        1,
+        "fixed"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "KSampler",
+      "pos": [
+        900,
+        -20
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 16
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 17
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 18
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 22
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "widget": {
+            "name": "seed"
+          },
+          "link": 23
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "widget": {
+            "name": "steps"
+          },
+          "link": 24
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "widget": {
+            "name": "cfg"
+          },
+          "link": 25
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "widget": {
+            "name": "sampler_name"
+          },
+          "link": 26
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "widget": {
+            "name": "scheduler"
+          },
+          "link": 27
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            29
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.12.3",
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        0,
+        "fixed",
+        20,
+        8,
+        "euler",
+        "simple",
+        1
+      ]
+    },
+    {
+      "id": 10,
+      "type": "EmptyLatentImage",
+      "pos": [
+        590,
+        280
+      ],
+      "size": [
+        210,
+        110
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 19
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 20
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "widget": {
+            "name": "batch_size"
+          },
+          "link": 21
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            22
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.12.3",
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        512,
+        512,
+        1
+      ]
+    },
+    {
+      "id": 11,
+      "type": "VAEDecode",
+      "pos": [
+        1220,
+        -20
+      ],
+      "size": [
+        140,
+        46
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 29
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 31
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            30
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.12.3",
+        "Node name for S&R": "VAEDecode"
+      }
+    },
+    {
+      "id": 7,
+      "type": "SaveImageParamLiteMittimi",
+      "pos": [
+        1400,
+        30
+      ],
+      "size": [
+        300,
+        570
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 30
+        },
+        {
+          "name": "parameters_data",
+          "shape": 7,
+          "type": "PDATA",
+          "link": 28
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfyui_mittimi_load_presetlite",
+        "ver": "1.0.3",
+        "Node name for S&R": "SaveImageParamLiteMittimi"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        "PNG",
+        9,
+        true,
+        100,
+        ""
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadSetParamLiteMittimi",
+      "pos": [
+        -700,
+        -170
+      ],
+      "size": [
+        400,
+        970
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "checkpoint_name",
+          "type": "COMBO",
+          "links": [
+            1
+          ]
+        },
+        {
+          "name": "clip_num",
+          "type": "INT",
+          "links": [
+            2
+          ]
+        },
+        {
+          "name": "vae_name",
+          "type": "COMBO",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "positive_prompt_text",
+          "type": "STRING",
+          "links": [
+            14
+          ]
+        },
+        {
+          "name": "negative_prompt_text",
+          "type": "STRING",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "links": [
+            24
+          ]
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "links": [
+            25
+          ]
+        },
+        {
+          "name": "sampler_name",
+          "type": "COMBO",
+          "links": [
+            26
+          ]
+        },
+        {
+          "name": "scheduler",
+          "type": "COMBO",
+          "links": [
+            27
+          ]
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "links": [
+            8,
+            15,
+            23
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            19
+          ]
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            20
+          ]
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "parameters_data",
+          "type": "PDATA",
+          "links": [
+            28
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui_mittimi_load_presetlite",
+        "ver": "1.0.3",
+        "Node name for S&R": "LoadSetParamLiteMittimi"
+      },
+      "widgets_values": [
+        "SDXL.safetensors",
+        -1,
+        "Use_merged_vae",
+        "best quality, masterpiece, detailed background, ",
+        "",
+        "photo realistic",
+        "worst quality, low quality, ",
+        "",
+        "",
+        832,
+        1152,
+        1,
+        32,
+        6.5,
+        "euler_ancestral",
+        "normal",
+        1,
+        "randomize",
+        "sample.toml"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      3,
+      0,
+      4,
+      0,
+      "COMBO"
+    ],
+    [
+      2,
+      3,
+      1,
+      4,
+      1,
+      "INT"
+    ],
+    [
+      3,
+      3,
+      2,
+      4,
+      2,
+      "COMBO"
+    ],
+    [
+      7,
+      3,
+      4,
+      5,
+      3,
+      "STRING"
+    ],
+    [
+      8,
+      3,
+      9,
+      5,
+      4,
+      "INT"
+    ],
+    [
+      9,
+      4,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      10,
+      4,
+      1,
+      6,
+      1,
+      "CLIP"
+    ],
+    [
+      11,
+      6,
+      0,
+      5,
+      0,
+      "MODEL"
+    ],
+    [
+      12,
+      6,
+      1,
+      5,
+      1,
+      "CLIP"
+    ],
+    [
+      13,
+      6,
+      2,
+      5,
+      2,
+      "STRING"
+    ],
+    [
+      14,
+      3,
+      3,
+      6,
+      2,
+      "STRING"
+    ],
+    [
+      15,
+      3,
+      9,
+      6,
+      3,
+      "INT"
+    ],
+    [
+      16,
+      5,
+      0,
+      9,
+      0,
+      "MODEL"
+    ],
+    [
+      17,
+      5,
+      2,
+      9,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      18,
+      5,
+      3,
+      9,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      19,
+      3,
+      10,
+      10,
+      0,
+      "INT"
+    ],
+    [
+      20,
+      3,
+      11,
+      10,
+      1,
+      "INT"
+    ],
+    [
+      21,
+      3,
+      12,
+      10,
+      2,
+      "INT"
+    ],
+    [
+      22,
+      10,
+      0,
+      9,
+      3,
+      "LATENT"
+    ],
+    [
+      23,
+      3,
+      9,
+      9,
+      4,
+      "INT"
+    ],
+    [
+      24,
+      3,
+      5,
+      9,
+      5,
+      "INT"
+    ],
+    [
+      25,
+      3,
+      6,
+      9,
+      6,
+      "FLOAT"
+    ],
+    [
+      26,
+      3,
+      7,
+      9,
+      7,
+      "COMBO"
+    ],
+    [
+      27,
+      3,
+      8,
+      9,
+      8,
+      "COMBO"
+    ],
+    [
+      28,
+      3,
+      13,
+      7,
+      1,
+      "PDATA"
+    ],
+    [
+      29,
+      9,
+      0,
+      11,
+      0,
+      "LATENT"
+    ],
+    [
+      30,
+      11,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      31,
+      4,
+      2,
+      11,
+      1,
+      "VAE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "workflowRendererVersion": "LG",
+    "ds": {
+      "scale": 0.6588450000000278,
+      "offset": [
+        947.2619143923549,
+        610.4002406237269
+      ]
+    },
+    "frontendVersion": "1.37.11"
+  },
+  "version": 0.4
+}
