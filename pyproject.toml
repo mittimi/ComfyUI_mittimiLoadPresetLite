@@ -1,7 +1,7 @@
 [project]
 name = "comfyui_mittimi_load_presetlite"
 description = "This node can easily switch between models and prompts by saving presets."
-version = "1.0.2"
+version = "1.0.3"
 license = "LICENSE"
 
 [project.urls]
@@ -11,4 +11,5 @@ Repository = "https://github.com/mittimi/ComfyUI_mittimiLoadPresetLite"
 PublisherId = "mittimi"
 DisplayName = "ComfyUI_mittimiLoadPresetLite"
 Icon = ""
+
 
