@@ -1,6 +1,10 @@
 # ComfyUI_mittimiLoadPresetLite
 
-I'm testing now...
+For basic usage instructions, please see here. 
+https://github.com/mittimi/ComfyUI_mittimiLoadPreset2
+
+The differences from the above should be clear if you review the sample workflow.
+
 
 
 === note ===
