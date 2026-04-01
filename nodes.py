@@ -228,6 +228,35 @@ class LoraLoaderExtractedPromptLiteMittimi:
         return(model, clip, ptxt, )
 
 
+class LoraLoaderModelOnlyExtractedPromptLiteMittimi:
+    @classmethod
+    def INPUT_TYPES(s):
+        return {
+            "required": {
+                "model": ("MODEL", ),
+                "positive_prompt_text": ("STRING", ),
+            }
+        }
+    RETURN_TYPES = ("MODEL", "STRING", )
+    RETURN_NAMES = ("model", "string", )
+    FUNCTION = "LoraLoaderModelOnlyExtractedPromptLiteMittimi"
+    CATEGORY = "mittimiTools"
+
+    def LoraLoaderModelOnlyExtractedPromptLiteMittimi(self, model, positive_prompt_text, ):
+
+        plora = []
+        ptxt, plora = extractLoras(positive_prompt_text)
+
+        if len(plora):
+            for lora in plora:
+                if lora['vector']:
+                    model, clip, populated_vector = load_lora_for_models(model, None, lora['fullpath'], lora['strength'], 0, 1, lora['vector'])
+                else:
+                    model, clip = LoraLoader().load_lora(model, None, lora['path'], lora['strength'], 0)
+        
+        return(model, ptxt, )
+
+
 class CombineParamDataLiteMittimi:
     @classmethod
     def INPUT_TYPES(s):
@@ -517,6 +546,7 @@ NODE_CLASS_MAPPINGS = {
     "LoadCheckpointLiteMittimi": LoadCheckpointLiteMittimi,
     "TextToConditioningLiteMittimi": TextToConditioningLiteMittimi,
     "LoraLoaderExtractedPromptLiteMittimi": LoraLoaderExtractedPromptLiteMittimi,
+    "LoraLoaderModelOnlyExtractedPromptLiteMittimi": LoraLoaderModelOnlyExtractedPromptLiteMittimi,
     "SaveImageParamLiteMittimi": SaveImageParamLiteMittimi,
     "CombineParamDataLiteMittimi": CombineParamDataLiteMittimi,
     "SaveParamToPresetLiteMittimi": SaveParamToPresetLiteMittimi,
@@ -527,6 +557,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "LoadCheckpointLiteMittimi": "LoadCheckpointLite",
     "TextToConditioningLiteMittimi": "TextToConditioningLite",
     "LoraLoaderExtractedPromptLiteMittimi": "LoraLoaderExtractedPromptLite",
+    "LoraLoaderModelOnlyExtractedPromptLiteMittimi": "LoraLoaderModelOnlyExtractedPromptLite",
     "SaveImageParamLiteMittimi": "SaveImageWithParamTextLite",
     "CombineParamDataLiteMittimi": "CombineParamDataLite",
     "SaveParamToPresetLiteMittimi": "SaveParamToPresetLite",
